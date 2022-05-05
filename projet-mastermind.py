@@ -14,7 +14,7 @@ import copy
 import random as rd
 
 #########################################
-### Constantes
+# Constantes
 
 #########################################
 # Variables Glo et Widgets
@@ -25,13 +25,13 @@ import random as rd
 #########################################
 # Programme principal
 
- # Définitions des widgets
+# Définitions des widgets
 
- # Placement des widgets
+# Placement des widgets
 
- # Liaisons d'évènements
+# Liaisons d'évènements
 
- # Boucle principale
+# Boucle principale
 racine.mainloop()
 
 #### EXEMPLE TROUV2 SUR INTERNET
