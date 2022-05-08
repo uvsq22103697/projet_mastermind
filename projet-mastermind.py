@@ -67,24 +67,6 @@ lst_init_couleurs = ["bleu", "rose", "vert", "jaune", "violet"]
 #########################################
 # Fonctions
 
-def init_grille(): ### a modifier pour adapter à notre modèle 
-    """Retourne une grille carrée vide
-       dimension N+2, les éléments de la configuration vont de 1 à N
-       les indices 0 et N+1 sont les bords et permettent de ne pas gérer
-       de cas particuliers
-    """
-    global grille, config_cur
-    grille = [[0 for i in range(N+2)] for j in range(N+2)]
-    config_cur = [[0 for i in range(N+2)] for j in range(N+2)]
-    for i in range(1, N+1):
-        x = (i - 1) * LARGEUR_CASE
-        for j in range(1, N+1):
-            y = (j - 1) * HAUTEUR_CASE
-            col = "black"
-            carre = canvas.create_rectangle(x, y, x+LARGEUR_CASE,
-                                            y+HAUTEUR_CASE, fill=col,
-                                            outline="grey50")
-            grille[i][j] = carre
 
 class Mastermind:
     def __init__(self, parent):
