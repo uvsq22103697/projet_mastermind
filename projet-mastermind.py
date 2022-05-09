@@ -67,6 +67,22 @@ lst_init_couleurs = ["bleu", "rose", "vert", "jaune", "violet"]
 #########################################
 # Fonctions
 
+class accueil:
+    def main_solo():
+        display_game()
+        update_game()
+    def main():
+        doGame = false
+        quit=false
+        while not quit:
+            if doGame:
+                ret = main_menu()
+            if ret == 0:
+                quit = true
+            else:
+                doGame = true
+        else:
+            main_game()
 
 class Mastermind:
     def __init__(self, parent):
@@ -135,6 +151,7 @@ class Mastermind:
 root = tk.Tk()
 game = Mastermind(root)
 root.mainloop()
+
 ## déf une fonction qui fait apparaitre le table de jeu (bouton start) et qui demande à l'utilisateur les 4 couleurs qu'il veut puis qui enregistre le choix
 ## def une fonction qui permet de cacher le choix qd les couleurs sont validées (bouton ok) et qui demande au joueur 2 de joueur
 ## def une fonction qui propose toutes les couleurs au joueur 2 (un bouton par couleur) et qui permette au joueur de sélectionner un enchainement de 4 coueleurs
@@ -163,31 +180,3 @@ root.mainloop()
 # Boucle principale
 #racine.mainloop()
 
-#### EXEMPLE TROUV2 SUR INTERNET
-
-
-#Transformation d'une chaine en liste (def to_list(s))
-#chaine = "123456"
-#lst_chaine = list(chaine)
-#print("chaine = ", chaine, "        liste = ", lst_chaine)
-
-
-
-#Copie d'une liste dans une autre liste (def copie(liste):)
-#lst_melange_couleurs = list(lst_init_couleurs)
-
-#Mélange aléatoire de la liste (def cache(n,k))
-#shuffle(lst_melange_couleurs)
-
-#print(lst_init_couleurs, "couleurs initiales")
-#print(lst_melange_couleurs, "couleurs mélangées")
-
-#Controle couleur bien ou mal placée
-#i = 0
-#for element in lst_init_couleurs:
-    #if lst_melange_couleurs[i] == element:
-        #print("OK couleur", element,  "en position ", i)
-    #else:
-        #print("KO couleur en position ", i)
-
-    #i += 1
