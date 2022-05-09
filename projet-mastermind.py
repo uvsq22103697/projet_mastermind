@@ -48,20 +48,12 @@ HAUTEUR2_CASE = HAUTEUR2 // N2
 #########################################
 # Variables Glo et Widgets
 
-### pour le moment j'ai juste repris la mtd du prof dans sa correction pour sandpile
-
-# objets graphiques représentant la grille dans un tableau 2D
 grille = None
-# configuration courante dans un tableau 2D de dimension N+2 pour tenir compte des bords
 config_cur = None
-# deux variables booléeennes por savoir si il faut ajouter ou soustraire la config créée quand on clique dessus
 add_active = False
 sous_active = False
-# variable booléenne pour savoir si le mode cinéma est actif ou pas
 arret = True
-# identifiant de la méthode after qui sert à pouvoir arrêter le compte à rebours
 id_after = 0
-#liste des couleurs des pions
 lst_init_couleurs = ["bleu", "rose", "vert", "jaune", "violet"]
 
 #########################################
