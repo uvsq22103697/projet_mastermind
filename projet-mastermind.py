@@ -71,18 +71,21 @@ class accueil:
     def main_solo():
         display_game()
         update_game()
+    def main_deux():
+        display_game()
+        update_game()
     def main():
         doGame = false
         quit=false
         while not quit:
             if doGame:
-                ret = main_menu()
+                ret = main_solo()
             if ret == 0:
                 quit = true
             else:
                 doGame = true
         else:
-            main_game()
+            main_deux()
 
 class Mastermind:
     def __init__(self, parent):
