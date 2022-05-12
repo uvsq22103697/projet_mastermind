@@ -813,16 +813,16 @@ class Application(tk.Tk):
         self.canvas.delete('all')
         self.canvas.create_text(650, 70, text='Bienvenue dans notre Mastermind', font='arial 60', fill='red')
         # affichage du bouton "jouer"
-        btn_start = Button(self.canvas, text='JOUER SOLO', font=("", 30), command=self.jeu)
+        btn_start = Button(self.canvas, text='JOUER SOLO', font=("", 20), command=self.jeu)
         btn_start_window = self.canvas.create_window(250, 350, window=btn_start)
         # affichege du bouton "règles"
-        btn_rules = Button(self.canvas, text='REGLES 1 JOUEUR', font=("", 30), command=self.rules)
+        btn_rules = Button(self.canvas, text='REGLES 1 JOUEUR', font=("", 20), command=self.rules)
         btn_rules_window = self.canvas.create_window(550, 350, window=btn_rules)
         
-        btn_2j = Button(self.canvas, text='2 JOUEURS', font=("", 30), command=self.jeu_2)
+        btn_2j = Button(self.canvas, text='2 JOUEURS', font=("", 20), command=self.jeu_2)
         btn_2j_window = self.canvas.create_window(850, 350, window=btn_2j)
         
-        btn_r2 = Button(self.canvas, text='REGLES 2 JOUEURS', font=("", 30), command=self.rules_2)
+        btn_r2 = Button(self.canvas, text='REGLES 2 JOUEURS', font=("", 20), command=self.rules_2)
         btn_r2_window = self.canvas.create_window(1250, 350, window=btn_r2)
         self.canvas.create_text(600, 600, text='AMUSEZ-VOUS BIEN !', font='arial 45', fill='red')
 
