@@ -43,6 +43,7 @@ class Application(tk.Tk):
 
     
     def abandonner(self):
+        print ("aband")
         # quand tu as perdus
         self.canvas.delete('all')
         self.canvas.create_text(500, 60, text='TU AS PERDU!', font='arial 70', fill='red')
@@ -52,9 +53,38 @@ class Application(tk.Tk):
         self.canvas.create_text(500, 295, text='appuie sur le bouton ci dessous pour rejouer', font='Arial 30',
                                 fill='black')
         btn_rejouer = Button(self.canvas, text='REESSAYER', command=self.welcome)
-        btn_quiter = Button(self.canvas, text="QUITTER", command=app.quit)
+        btn_quiter = Button(self.canvas, text="QUITTER", command= self.quit)
         btn_rejouer_window = self.canvas.create_window(500, 360, anchor=NW, window=btn_rejouer)
         btn_quiter_window = self.canvas.create_window(400, 360, anchor=NW, window=btn_quiter)
+
+    def victoire (self):
+        self.canvas.delete('all')
+        self.canvas.create_text(500, 60, text='TU AS GAGNER!', font='arial 70', fill='red')
+        self.canvas.create_text(500, 195, text='appuie sur le bouton quitter pour quitter', font='Arial 30',
+                                fill='blue')
+        self.canvas.create_rectangle(110, 255, 890, 335, outline='black', fill='white')
+        self.canvas.create_text(500, 295, text='appuie sur le bouton ci dessous pour rejouer', font='Arial 30',
+                                fill='black')
+        btn_rejouer = Button(self.canvas, text='REJOUER', command=self.welcome)
+        btn_quiter = Button(self.canvas, text="QUITTER", command= self.quit)
+        btn_rejouer_window = self.canvas.create_window(500, 360, anchor=NW, window=btn_rejouer)
+        btn_quiter_window = self.canvas.create_window(400, 360, anchor=NW, window=btn_quiter)
+
+    def victoire_2 (self):
+        self.canvas.delete('all')
+        self.canvas.create_text(550, 60, text='TU AS GAGNER OU PERDU DEMANDE AU JOUEUR 2', font='arial 30', fill='red')
+        self.canvas.create_text(500, 195, text='appuie sur le bouton quitter pour quitter', font='Arial 30',
+                                fill='blue')
+        self.canvas.create_rectangle(110, 255, 890, 335, outline='black', fill='white')
+        self.canvas.create_text(500, 295, text='appuie sur le bouton ci dessous pour rejouer', font='Arial 30',
+                                fill='black')
+        btn_rejouer = Button(self.canvas, text='REJOUER', command=self.welcome)
+        btn_quiter = Button(self.canvas, text="QUITTER", command= self.quit)
+        btn_rejouer_window = self.canvas.create_window(500, 360, anchor=NW, window=btn_rejouer)
+        btn_quiter_window = self.canvas.create_window(400, 360, anchor=NW, window=btn_quiter)
+    
+    
+
 
     # mode 1 joueur
     def jeu(self):
@@ -108,6 +138,8 @@ class Application(tk.Tk):
             for i in range(4):
                 if code[i] == my_color[i]:
                     green_compteur = green_compteur + 1
+                if green_compteur >= 4 :
+                    command = self.victoire ()
             return green_compteur
 
         # fonction permettant de mettre les points gris
@@ -145,6 +177,7 @@ class Application(tk.Tk):
                 self.canvas.create_oval(410, 9 + 70 * ((compteur / 4) - 1), 410 + 20,
                                         9 + 70 * ((compteur / 4) - 1) + 20,
                                         fill="light green")
+                            
             if cpt == 4:
                 self.canvas.create_oval(370, 9 + 70 * ((compteur / 4) - 1), 370 + 20,
                                         9 + 70 * ((compteur / 4) - 1) + 20,
@@ -266,6 +299,8 @@ class Application(tk.Tk):
                                                                             y0 + 700 + 60,
                                                                             fill='red')
                                                     my_color[compteur - (compteur - 4) - 1] = "red"
+            if compteur > 40 :
+                command= self.abandonner()
 
         # fonction permettant de mettre un point jaune
         def yellow_click():
@@ -339,8 +374,10 @@ class Application(tk.Tk):
                                                                             y0 + 700 + 60,
                                                                             fill='yellow')
                                                     my_color[compteur - (compteur - 4) - 1] = "yellow"
-
+            if compteur >40 :
+                command = self.abandonner ()
         # fonction permettant de mettre un point vert foncé
+        
         def dark_green_click():
             global compteur
             compteur = compteur + 1
@@ -413,7 +450,8 @@ class Application(tk.Tk):
                                                                             y0 + 700 + 60,
                                                                             fill='dark green')
                                                     my_color[compteur - (compteur - 4) - 1] = "dark green"
-
+            if compteur >40 :
+                command = self.abandonner ()
         # fonction permettant de mettre un point bleu
         def blue_click():
             global compteur
@@ -486,6 +524,8 @@ class Application(tk.Tk):
                                                                             y0 + 700 + 60,
                                                                             fill='blue')
                                                     my_color[compteur - (compteur - 4) - 1] = "blue"
+            if compteur >40 :
+                command = self.abandonner ()
 
         # fonction permettant de mettre un point marron
         def brown_click():
@@ -559,6 +599,8 @@ class Application(tk.Tk):
                                                                             y0 + 700 + 60,
                                                                             fill='brown')
                                                     my_color[compteur - (compteur - 4) - 1] = "brown"
+            if compteur >40:
+                command = self.abandonner ()
 
         # fonction permettant de mettre un point orange
         def orange_click():
@@ -632,6 +674,8 @@ class Application(tk.Tk):
                                                                             y0 + 700 + 60,
                                                                             fill='orange')
                                                     my_color[compteur - (compteur - 4) - 1] = "orange"
+            if compteur >40 :
+                command = self.abandonner ()
 
         # fonction permettant de mettre un point violet foncé
         def dark_violet_click():
@@ -706,6 +750,8 @@ class Application(tk.Tk):
                                                                             y0 + 700 + 60,
                                                                             fill='dark violet')
                                                     my_color[compteur - (compteur - 4) - 1] = "dark violet"
+            if compteur >40 :
+                command = self.abandonner ()
 
         # fonction permettant de mettre un point rose
         def pink_click():
@@ -779,6 +825,8 @@ class Application(tk.Tk):
                                                                             y0 + 700 + 60,
                                                                             fill='pink')
                                                     my_color[compteur - (compteur - 4) - 1] = "pink"
+            if compteur >40 :
+                command = self.abandonner ()
 
         # création des boutons associés aux ronds de couleur
         red_btn = Button(text="  ", bg="red", bd='0', highlightcolor='red', activebackground='red', command=red_click)
@@ -824,6 +872,7 @@ class Application(tk.Tk):
         
         btn_r2 = Button(self.canvas, text='REGLES 2 JOUEURS', font=("", 20), command=self.rules_2)
         btn_r2_window = self.canvas.create_window(1250, 350, window=btn_r2)
+
         self.canvas.create_text(600, 600, text='AMUSEZ-VOUS BIEN !', font='arial 45', fill='red')
 
     # affichage des règles
@@ -911,6 +960,7 @@ class Application(tk.Tk):
         self.canvas.create_oval(580 - 15, 401 - 15, 580 + 15, 401 + 15, fill='pink')
         self.canvas.create_oval(580 - 15, 470 - 15, 580 + 15, 470 + 15, fill='light green')
         self.canvas.create_oval(580 - 15, 520 - 15, 580 + 15, 520 + 15, fill='grey')
+        
 
                 # fonction permettant de mettre un point rouge
         
@@ -952,6 +1002,8 @@ class Application(tk.Tk):
                                                     self.canvas.create_oval(x0 + (70 * (compteur - 36)), y0 + 700,
                                                                         x0 + (70 * (compteur - 36)) + 60, y0 + 700 + 60,
                                                                         fill='red')
+            if compteur > 41 :
+                command = self.victoire_2 ()
 
         def yellow_click():
             global compteur
@@ -991,6 +1043,8 @@ class Application(tk.Tk):
                                                     self.canvas.create_oval(x0 + (70 * (compteur - 36)), y0 + 700,
                                                                         x0 + (70 * (compteur - 36)) + 60, y0 + 700 + 60,
                                                                         fill='yellow')
+            if compteur >41 :
+                command = self.victoire_2 ()
         
         def dark_green_click():
             global compteur
@@ -1030,6 +1084,8 @@ class Application(tk.Tk):
                                                     self.canvas.create_oval(x0 + (70 * (compteur - 36)), y0 + 700,
                                                                         x0 + (70 * (compteur - 36)) + 60, y0 + 700 + 60,
                                                                         fill='dark green')
+            if compteur >41 :
+                command = self.victoire_2 ()
         
         def blue_click ():
             global compteur
@@ -1069,7 +1125,8 @@ class Application(tk.Tk):
                                                     self.canvas.create_oval(x0 + (70 * (compteur - 36)), y0 + 700,
                                                                         x0 + (70 * (compteur - 36)) + 60, y0 + 700 + 60,
                                                                         fill='blue')
-
+                if compteur >41 :
+                    command = self.victoire_2 ()
         def brown_click ():
             global compteur
             compteur = compteur + 1
@@ -1108,7 +1165,8 @@ class Application(tk.Tk):
                                                     self.canvas.create_oval(x0 + (70 * (compteur - 36)), y0 + 700,
                                                                         x0 + (70 * (compteur - 36)) + 60, y0 + 700 + 60,
                                                                         fill='brown')
-
+                if compteur >41 :
+                    command = self.victoire_2 ()
         def orange_click ():
             global compteur
             compteur = compteur + 1
@@ -1147,7 +1205,8 @@ class Application(tk.Tk):
                                                     self.canvas.create_oval(x0 + (70 * (compteur - 36)), y0 + 700,
                                                                         x0 + (70 * (compteur - 36)) + 60, y0 + 700 + 60,
                                                                         fill='orange')
-
+                if compteur >=41 :
+                    command = self.victoire_2 ()
         def dark_violet_click():
             global compteur
             compteur = compteur + 1
@@ -1186,7 +1245,8 @@ class Application(tk.Tk):
                                                     self.canvas.create_oval(x0 + (70 * (compteur - 36)), y0 + 700,
                                                                         x0 + (70 * (compteur - 36)) + 60, y0 + 700 + 60,
                                                                         fill='dark violet')
-
+                if compteur >=41 :
+                    command = self.victoire_2 ()
         def pink_click ():
             global compteur
             compteur = compteur + 1
@@ -1225,86 +1285,138 @@ class Application(tk.Tk):
                                                     self.canvas.create_oval(x0 + (70 * (compteur - 36)), y0 + 700,
                                                                         x0 + (70 * (compteur - 36)) + 60, y0 + 700 + 60,
                                                                         fill='pink')
-
-
-
+                if compteur >=41 :
+                    command = self.victoire_2 ()
+                                                   
 
 
         def grey_display():
+            global compteur_vert_gris
             compteur_vert_gris = compteur_vert_gris + 1
-            x0 = 11
+            x0 = 348
             y0 = -61
             if compteur_vert_gris <= 4:
-                self.canvas.create_oval(x0 + (70*compteur_vert_gris), y0 + 70, x0 + (70*compteur_vert_gris) + 60, y0 + 70 + 60, fill='grey')
+                self.canvas.create_oval(x0 + (70*compteur_vert_gris/3.2), y0 + 70, x0 + (70*compteur_vert_gris/3.1) + 20, y0 + 30 + 60, fill='grey')
             else:
                 if compteur_vert_gris <= 8:
-                    self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-4)), y0 + 140, x0 + (70 * (compteur_vert_gris-4)) + 60, y0 + 140 + 60, fill='grey')
+                    self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-4)/3.2), y0 +140 , x0 + (70 * (compteur_vert_gris-4)/3.2) + 20, y0 + 60 + 100, fill='grey')
                 else:
                     if compteur_vert_gris <= 12:
-                        self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-8)), y0 + 210, x0 + (70 * (compteur_vert_gris-8)) + 60, y0 + 210 + 60, fill='grey')
+                        self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-8)/3.2), y0 + 210, x0 + (70 * (compteur_vert_gris-8)/3.2) + 20, y0 + 60 + 170, fill='grey')
                     else:
                         if compteur_vert_gris <= 16:
-                            self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-12)), y0 + 280, x0 + (70 * (compteur_vert_gris-12)) + 60, y0 + 280 + 60, fill='grey')
+                            self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-12)/3.2), y0 + 280, x0 + (70 * (compteur_vert_gris-12)/3.2) + 20, y0 + 60+ 240, fill='grey')
                         else:
                             if compteur_vert_gris <= 20:
-                                self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-16)), y0 + 350, x0 + (70 * (compteur_vert_gris-16)) + 60, y0 + 350 + 60, fill='grey')
+                                self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-16)/3.2), y0 + 350, x0 + (70 * (compteur_vert_gris-16)/3.2) + 20, y0 + 60 + 310, fill='grey')
                             else:
                                 if compteur_vert_gris <= 24:
-                                    self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-20)), y0 + 420, x0 + (70 * (compteur_vert_gris-20)) + 60, y0 + 420 + 60, fill='grey')
+                                    self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-20)/3.2), y0 + 420, x0 + (70 * (compteur_vert_gris-20)/3.2) + 20, y0 + 60 + 380, fill='grey')
                                 else:
                                     if compteur_vert_gris <= 28:
-                                        self.canvas.create_oval(x0 + (70 * (compteur_vert_gris - 24)), y0 + 490,
-                                                                x0 + (70 * (compteur_vert_gris - 24)) + 60, y0 + 490 + 60,
+                                        self.canvas.create_oval(x0 + (70 * (compteur_vert_gris - 24)/3.2), y0 + 490,
+                                                                x0 + (70 * (compteur_vert_gris - 24)/3.2) + 20, y0 + 60 + 450,
                                                                 fill='grey')
                                     else:
                                         if compteur_vert_gris <= 32:
-                                            self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-28)), y0 + 560, x0 + (70 * (compteur_vert_gris-28)) + 60, y0 + 560 + 60, fill='grey')
+                                            self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-28)/3.2), y0 + 560, x0 + (70 * (compteur_vert_gris-28)/3.2) + 20, y0 + 60 + 520, fill='grey')
                                         else:
                                             if compteur_vert_gris <= 36:
-                                                self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-32)), y0 + 630, x0 + (70 * (compteur_vert_gris-32)) + 60, y0 + 630 + 60, fill='grey')
+                                                self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-32)/3.2), y0 + 630, x0 + (70 * (compteur_vert_gris-32)/3.2) + 20, y0 + 60 + 590, fill='grey')
                                             else:
                                                 if compteur_vert_gris <=40:
-                                                    self.canvas.create_oval(x0 + (70 * (compteur_vert_gris - 36)), y0 + 700,
-                                                                        x0 + (70 * (compteur_vert_gris - 36)) + 60, y0 + 700 + 60,
+                                                    self.canvas.create_oval(x0 + (70 * (compteur_vert_gris - 36)/3.2), y0 + 700,
+                                                                        x0 + (70 * (compteur_vert_gris - 36)/3.2) + 20, y0 + 60 + 660,
                                                                         fill='grey')
+            if compteur >=41 :
+                command = self.abandonner ()
+                                               
         def green_display():
             global compteur_vert_gris
             compteur_vert_gris = compteur_vert_gris + 1
-            x0 = 11
+            x0 = 348
             y0 = -61
             if compteur_vert_gris <= 4:
-                self.canvas.create_oval(x0 + (70*compteur_vert_gris), y0 + 70, x0 + (70*compteur_vert_gris) + 60, y0 + 70 + 60, fill='light green')
+                self.canvas.create_oval(x0 + (70*compteur_vert_gris/3.2), y0 + 70, x0 + (70*compteur_vert_gris/3.1) + 20, y0 + 30 + 60, fill='light green')
+            
             else:
                 if compteur_vert_gris <= 8:
-                    self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-4)), y0 + 140, x0 + (70 * (compteur_vert_gris-4)) + 60, y0 + 140 + 60, fill='light green')
+                    self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-4)/3.2), y0 +140 , x0 + (70 * (compteur_vert_gris-4)/3.2) + 20, y0 + 60 + 100, fill='light green')
                 else:
                     if compteur_vert_gris <= 12:
-                        self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-8)), y0 + 210, x0 + (70 * (compteur_vert_gris-8)) + 60, y0 + 210 + 60, fill='light green')
+                        self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-8)/3.2), y0 + 210, x0 + (70 * (compteur_vert_gris-8)/3.2) + 20, y0 + 60 + 170, fill='light green')
                     else:
                         if compteur_vert_gris <= 16:
-                            self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-12)), y0 + 280, x0 + (70 * (compteur_vert_gris-12)) + 60, y0 + 280 + 60, fill='light green')
+                            self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-12)/3.2), y0 + 280, x0 + (70 * (compteur_vert_gris-12)/3.2) + 20, y0 + 60+ 240, fill='light green')
                         else:
                             if compteur_vert_gris <= 20:
-                                self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-16)), y0 + 350, x0 + (70 * (compteur_vert_gris-16)) + 60, y0 + 350 + 60, fill='light green')
+                                self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-16)/3.2), y0 + 350, x0 + (70 * (compteur_vert_gris-16)/3.2) + 20, y0 + 60 + 310, fill='light green')
                             else:
                                 if compteur_vert_gris <= 24:
-                                    self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-20)), y0 + 420, x0 + (70 * (compteur_vert_gris-20)) + 60, y0 + 420 + 60, fill='light green')
+                                    self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-20)/3.2), y0 + 420, x0 + (70 * (compteur_vert_gris-20)/3.2) + 20, y0 + 60 + 380, fill='light green')
                                 else:
                                     if compteur_vert_gris <= 28:
-                                        self.canvas.create_oval(x0 + (70 * (compteur_vert_gris - 24)), y0 + 490,
-                                                                x0 + (70 * (compteur_vert_gris - 24)) + 60, y0 + 490 + 60,
+                                        self.canvas.create_oval(x0 + (70 * (compteur_vert_gris - 24)/3.2), y0 + 490,
+                                                                x0 + (70 * (compteur_vert_gris - 24)/3.2) + 20, y0 + 60 + 450,
                                                                 fill='light green')
                                     else:
                                         if compteur_vert_gris <= 32:
-                                            self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-28)), y0 + 560, x0 + (70 * (compteur_vert_gris-28)) + 60, y0 + 560 + 60, fill='light green')
+                                            self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-28)/3.2), y0 + 560, x0 + (70 * (compteur_vert_gris-28)/3.2) + 20, y0 + 60 + 520, fill='light green')
                                         else:
                                             if compteur_vert_gris <= 36:
-                                                self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-32)), y0 + 630, x0 + (70 * (compteur_vert_gris-32)) + 60, y0 + 630 + 60, fill='light green')
+                                                self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-32)/3.2), y0 + 630, x0 + (70 * (compteur_vert_gris-32)/3.2) + 20, y0 + 60 + 590, fill='light green')
                                             else:
                                                 if compteur_vert_gris <=40:
-                                                    self.canvas.create_oval(x0 + (70 * (compteur_vert_gris - 36)), y0 + 700,
-                                                                        x0 + (70 * (compteur_vert_gris - 36)) + 60, y0 + 700 + 60,
+                                                    self.canvas.create_oval(x0 + (70 * (compteur_vert_gris - 36)/3.2), y0 + 700,
+                                                                        x0 + (70 * (compteur_vert_gris - 36)/3.2) + 20, y0 + 60 + 660,
                                                                         fill='light green')
+       
+        def olive_display():
+            global compteur_vert_gris
+            compteur_vert_gris = compteur_vert_gris + 1
+            x0 = 348
+            y0 = -61
+            if compteur_vert_gris <= 4:
+                self.canvas.create_oval(x0 + (70*compteur_vert_gris/3.2), y0 + 70, x0 + (70*compteur_vert_gris/3.1) + 20, y0 + 30 + 60, fill='olive')
+            
+            else:
+                if compteur_vert_gris <= 8:
+                    self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-4)/3.2), y0 +140 , x0 + (70 * (compteur_vert_gris-4)/3.2) + 20, y0 + 60 + 100, fill='olive')
+                else:
+                    if compteur_vert_gris <= 12:
+                        self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-8)/3.2), y0 + 210, x0 + (70 * (compteur_vert_gris-8)/3.2) + 20, y0 + 60 + 170, fill='olive')
+                    else:
+                        if compteur_vert_gris <= 16:
+                            self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-12)/3.2), y0 + 280, x0 + (70 * (compteur_vert_gris-12)/3.2) + 20, y0 + 60+ 240, fill='olive')
+                        else:
+                            if compteur_vert_gris <= 20:
+                                self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-16)/3.2), y0 + 350, x0 + (70 * (compteur_vert_gris-16)/3.2) + 20, y0 + 60 + 310, fill='olive')
+                            else:
+                                if compteur_vert_gris <= 24:
+                                    self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-20)/3.2), y0 + 420, x0 + (70 * (compteur_vert_gris-20)/3.2) + 20, y0 + 60 + 380, fill='olive')
+                                else:
+                                    if compteur_vert_gris <= 28:
+                                        self.canvas.create_oval(x0 + (70 * (compteur_vert_gris - 24)/3.2), y0 + 490,
+                                                                x0 + (70 * (compteur_vert_gris - 24)/3.2) + 20, y0 + 60 + 450,
+                                                                fill='olive')
+                                    else:
+                                        if compteur_vert_gris <= 32:
+                                            self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-28)/3.2), y0 + 560, x0 + (70 * (compteur_vert_gris-28)/3.2) + 20, y0 + 60 + 520, fill='olive')
+                                        else:
+                                            if compteur_vert_gris <= 36:
+                                                self.canvas.create_oval(x0 + (70 * (compteur_vert_gris-32)/3.2), y0 + 630, x0 + (70 * (compteur_vert_gris-32)/3.2) + 20, y0 + 60 + 590, fill='olive')
+                                            else:
+                                                if compteur_vert_gris <=40:
+                                                    self.canvas.create_oval(x0 + (70 * (compteur_vert_gris - 36)/3.2), y0 + 700,
+                                                                        x0 + (70 * (compteur_vert_gris - 36)/3.2) + 20, y0 + 60 + 660,
+                                                                        fill='olive')
+                    
+
+            
+
+
+            
+                                                    
            
         
         red_btn = Button(text="  ", bg="red", bd='0', highlightcolor='red', activebackground='red', command=red_click)
@@ -1339,6 +1451,12 @@ class Application(tk.Tk):
         green_btn = Button(text="  ", bg="light green", bd='0', highlightcolor='light green', activebackground='light green', command=green_display)
         green_window = self.canvas.create_window(580, 470, window=green_btn)
 
+        white_btn = Button(text="  ", bg=" olive", bd='0', highlightcolor='olive', activebackground='olive', command=olive_display)
+        white_window = self.canvas.create_window(580, 530, window= white_btn)
+        
+
+
+
     def rules_2(self):
             # règles
             self.canvas.delete('all')
@@ -1370,7 +1488,39 @@ class Application(tk.Tk):
 
              # affichage du bouton "jouer"
             btn_start = Button(self.canvas, text='JOUER', font=("", 30), command=self.jeu_2)
-            btn_start_window = self.canvas.create_window(625, 620, window=btn_start) 
+            btn_start_window = self.canvas.create_window(550, 620, window=btn_start) 
+
+            btn_cc = Button(self.canvas, text='Chois des couleurs', font=("", 30), command=app.choix_couleur)
+            btn_cc_window = self.canvas.create_window(850, 620, window=btn_cc) 
+
+
+
+    l = []
+    def choix_couleur (self) :
+        self.canvas.delete('all')
+        self.canvas.create_text(950, 170, text='Voici les diffèrentes couleurs :', font='Arial 30', fill='black')
+        self.canvas.create_oval(800 - 15, 210 - 15, 800 + 15, 210 + 15, fill='red')
+        self.canvas.create_oval(840 - 15, 210 - 15, 840 + 15, 210 + 15, fill='yellow')
+        self.canvas.create_oval(880 - 15, 210 - 15, 880 + 15, 210 + 15, fill='dark green')
+        self.canvas.create_oval(920 - 15, 210 - 15, 920 + 15, 210 + 15, fill='blue')
+        self.canvas.create_oval(960 - 15, 210 - 15, 960 + 15, 210 + 15, fill='brown')
+        self.canvas.create_oval(1000 - 15, 210 - 15, 1000 + 15, 210 + 15, fill='orange')
+        self.canvas.create_oval(1040 - 15, 210 - 15, 1040 + 15, 210 + 15, fill='dark violet')
+        self.canvas.create_oval(1080 - 15, 210 - 15, 1080 + 15, 210 + 15, fill='pink')
+        self.canvas.create_text(700, 500, text='choisissez 4 couleurs : appuyez sur alt puis table | attention il faut les notés en anglais et :', font='Arial 20', fill='black')
+
+        for i in range (4):
+            global l
+            l =[i] = input ("choisissez 4 couleurs")
+            l = i + 1
+            return i
+             
+        btn_cc = Button(self.canvas, text='JOUER', font=("", 30), command=self.jeu_2)
+        btn_cc_window = self.canvas.create_window(625, 620, window=btn_cc) 
+
+
+
+
 
     
 
@@ -1383,15 +1533,17 @@ app = Application()
 menu_bar = tk.Menu(app)
 
 file_menu = Menu(menu_bar, tearoff=0)
+file_menu.add_command(label="Quitter", font=("", 16), command= app.quit)
 file_menu.add_command(label="1 joueur", font=("", 16), command=app.jeu)
 file_menu.add_command(label="2 joueurs", font=("", 16), command=app.jeu_2)
-file_menu.add_command(label="Règles 2 joueurs", font=("", 16),command=app.rules_2)
-file_menu.add_separator()
 file_menu.add_command(label="Règles", font=("", 16), command=app.rules)
+file_menu.add_command(label="Règles 2 joueurs", font=("", 16),command=app.rules_2)
+file_menu.add_command(label="Choix des couleur mode2", font=("", 16),command=app.choix_couleur)
+file_menu.add_separator()
 file_menu.add_command(label="Menu principal", font=("", 16), command=app.welcome)
 file_menu.add_separator()
 file_menu.add_command(label="Abandonner", font=("", 16), command=app.abandonner)
-file_menu.add_command(label="Quitter", font=("", 16), command=app.quit)
+
 menu_bar.add_cascade(label="Menu", font=("", 20), menu=file_menu)
 app.config(menu=menu_bar)
 
